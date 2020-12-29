@@ -96,7 +96,7 @@ namespace NOMINA23
                 comQry.Parameters.AddWithValue("@apamaven", ama);
                 comQry.Parameters.AddWithValue("@contacto", contacto);
                 comQry.ExecuteNonQuery();
-                exito = true;
+                
                 
             }
             catch (Exception ex)
@@ -118,7 +118,7 @@ namespace NOMINA23
 
         public void EliminarVendedor(Int16 idvendedor)
         {
-            string cadConexion = "Data Source=DESKTOP-LARGLFL; Initial Catalog=tiendita_la_moderna; Trusted_Connection=True";
+            SqlTransaction trans = con.BeginTransaction(System.Data.IsolationLevel.Serializable);
 
             using (SqlConnection conn = new SqlConnection(cadConexion))
             {
@@ -144,7 +144,7 @@ namespace NOMINA23
 
         public void ModificarVendedor(int id,string nombre, string apa, string ama, string contacto)
         {
-            string cadConexion = "Data Source=DESKTOP-LARGLFL; Initial Catalog=tiendita_la_moderna; Trusted_Connection=True";
+            
 
             using (SqlConnection conn = new SqlConnection(cadConexion))
             {
