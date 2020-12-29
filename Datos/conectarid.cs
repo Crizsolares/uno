@@ -87,41 +87,7 @@ namespace NOMINA23
                      
             try
             {
-                comQry = new SqlCommand("spAgregarVendedor", con, trans);
-                comQry.CommandType = CommandType.StoredProcedure;
-                /*limpiamos parametros*/
-                comQry.Parameters.Clear();
-                comQry.Parameters.AddWithValue("@nomven", nombre);
-                comQry.Parameters.AddWithValue("@apepaven", apa);
-                comQry.Parameters.AddWithValue("@apamaven", ama);
-                comQry.Parameters.AddWithValue("@contacto", contacto);
-                comQry.ExecuteNonQuery();
-                
-                
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("transaciion no esxitosa" + ex.ToString());
-            }
-            if (exito)
-            {
-                trans.Commit();
-            }
-            else {
-                trans.Rollback();
-            }
 
-
-            con.Close();
-
-        }
-
-        public void EliminarVendedor(Int16 idvendedor)
-        {
-            SqlTransaction trans = con.BeginTransaction(System.Data.IsolationLevel.Serializable);
-
-            using (SqlConnection conn = new SqlConnection(cadConexion))
-            {
                 try
                 {
                     conn.Open();
@@ -141,21 +107,7 @@ namespace NOMINA23
                 }
             }
         }
-
-        public void ModificarVendedor(int id,string nombre, string apa, string ama, string contacto)
-        {
-            
-
-            using (SqlConnection conn = new SqlConnection(cadConexion))
-            {
-                try
-                {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand("spActualizarVendedor", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Parameters.Add("@id_vendedor", System.Data.SqlDbType.Int);
-                    cmd.Parameters.Add("@nomven", System.Data.SqlDbType.NVarChar);
+Type.NVarChar);
                     cmd.Parameters.Add("@apepaven", System.Data.SqlDbType.NVarChar);
                     cmd.Parameters.Add("@apamaven", System.Data.SqlDbType.NVarChar);
                     cmd.Parameters.Add("@contacto", System.Data.SqlDbType.NVarChar);
@@ -163,23 +115,7 @@ namespace NOMINA23
                     cmd.Parameters["@id_vendedor"].Value = id;
                     cmd.Parameters["@nomven"].Value = nombre;
                     cmd.Parameters["@apepaven"].Value = apa;
-                    cmd.Parameters["@apamaven"].Value = ama;
-                    cmd.Parameters["@contacto"].Value = contacto;
-
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Transacción no exitosa" + ex.ToString());
-                }
-            }
-        }
-
-     
-        
-
-
+            
     }
 }
 
