@@ -154,17 +154,7 @@ namespace NOMINA23
                     SqlCommand cmd = new SqlCommand("spActualizarVendedor", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@id_vendedor", System.Data.SqlDbType.Int);
-                    cmd.Parameters.Add("@nomven", System.Data.SqlDbType.NVarChar);
-                    cmd.Parameters.Add("@apepaven", System.Data.SqlDbType.NVarChar);
-                    cmd.Parameters.Add("@apamaven", System.Data.SqlDbType.NVarChar);
-                    cmd.Parameters.Add("@contacto", System.Data.SqlDbType.NVarChar);
-
-                    cmd.Parameters["@id_vendedor"].Value = id;
-                    cmd.Parameters["@nomven"].Value = nombre;
-                    cmd.Parameters["@apepaven"].Value = apa;
-                    cmd.Parameters["@apamaven"].Value = ama;
-                    cmd.Parameters["@contacto"].Value = contacto;
+                    
 
                     cmd.ExecuteNonQuery();
                     conn.Close();
